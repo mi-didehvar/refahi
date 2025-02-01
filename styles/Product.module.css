@@ -1,0 +1,29 @@
+.card {
+    width: 100%;
+    max-height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 0.5rem;
+    border: 1px solid;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    transition: box-shadow 0.3s ease;
+    gap: 1rem;
+
+    .image {
+        width: 120px;
+        aspect-ratio: 1/1;
+        position: relative;
+        background-color: rgb(243, 244, 246);
+        border-radius: 0.375rem;
+    }
+
+    .description {
+        flex-grow: 1;
+    }
+
+    .counter {
+        display: flex;
+        gap: 0.5rem;
+    }
+}

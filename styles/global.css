@@ -1,7 +1,8 @@
-html,
-body {
+html body {
+  height: 100vh;
   padding: 0;
   margin: 0;
+  direction: rtl;
   font-family:
     Inter,
     -apple-system,
@@ -29,4 +30,29 @@ a {
 img {
   max-width: 100%;
   height: auto;
+}
+
+.container {
+  max-width: 840px;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.error{
+  color: red;
+}
+
+.flex {
+  display: flex;
+}
+
+.gap-4 {
+  gap: 1rem;
 }

@@ -1,0 +1,28 @@
+.dashboard_container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1rem;
+    padding: 1rem 0;
+    .products {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        align-items: start;
+        justify-content: stretch;
+
+    }
+
+    .cart {
+        display: flex;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard_container .products {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,39 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 0;
+        border-bottom: 1px solid black;
+        .logo {
+            font-size: large;
+            font-weight: 700;
+            
+            .small {
+                font-size: small;
+                font-weight: 400;
+            }
+        }
+    }
+    
+    .main {
+        display: flex;
+        flex-grow: 1;
+    }
+    
+    .footer {
+        border-top: 1px solid black;
+        padding: 1rem 0;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+}    
+.logos{
+    display: flex;
+    gap: 0.5rem;
+}
