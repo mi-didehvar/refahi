@@ -2,7 +2,7 @@
 import PocketBase from 'pocketbase';
 import { useMemo } from 'react';
 
-export const pocketbaseUrl = 'http://127.0.0.1:8090'
+export const pocketbaseUrl = 'https://refahi-db.liara.run'
 
 export const usePocket = () => {
   const pb = useMemo(() => {
