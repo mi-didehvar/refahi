@@ -16,7 +16,7 @@ const Page: NextPageWithLayout = () => {
         amount: amount,
         callbackUrl: "http://localhost:3000/wallet/callback",
         description: `Charge ${pb.authStore.record["username"]}'s Wallet with ${amount} Rial`,
-        mobile: "09123456789",
+        mobile: pb.authStore.record.mobile,
       });
       result.data.result !== 100 ? setError(result.data.message) : null;
       const t = await pb.collection("transactions").create({

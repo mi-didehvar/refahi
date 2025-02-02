@@ -7,6 +7,7 @@ import { usePocket } from "../hooks/UsePocket";
 import { Product, ProductCard } from "../components/product/card";
 import DashboardStyle from "../styles/Dashboard.module.css";
 import { RecordModel } from "pocketbase";
+import { usePriceFormatter } from "../hooks/UseFormatters";
 const Page: NextPageWithLayout = () => {
   const pb = usePocket();
   const router = useRouter();
@@ -67,7 +68,7 @@ const Page: NextPageWithLayout = () => {
     <div className={DashboardStyle.dashboard_container}>
       {products.find(x=>x.selectedCount > 0) && (
         <div className={DashboardStyle.cart}>
-          <div>مجموع سبد خرید: <strong>{products.reduce((value, current) => value + (current.selectedCount * (current.price || 0)), 0)}</strong> ریال</div>
+          <div>مجموع سبد خرید: <strong>{usePriceFormatter(products.reduce((value, current) => value + (current.selectedCount * (current.price || 0)), 0))}</strong> ریال</div>
           <button onClick={pay}>پرداخت</button>
         </div>
       )}

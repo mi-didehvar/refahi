@@ -16,13 +16,25 @@ const Page: NextPageWithLayout = () => {
   };
   return (
     <div>
-      <p>{pb.authStore.record.name} عزیز. خوش آومدی</p>
+      <p>{pb.authStore?.record?.name} عزیز. خوش آومدی</p>
       <div className="flex gap-4">
         <Link href="/dashboard">
           <button>داشبورد سفارش</button>
         </Link>
         <button>نظرسنجی (به‌زودی)</button>
-        <button onClick={logout}>خروج</button>
+        {
+          ["superUser","productOwner"].includes(pb.authStore.record.role) && (
+            <>
+              <Link href="/product/management">
+                <button>مدیریت محصولات</button>
+              </Link>
+
+            </>
+          )
+        }
+
+<button onClick={logout}>خروج</button>
+
       </div>
     </div>
   );

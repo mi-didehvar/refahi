@@ -37,7 +37,7 @@ const Page: NextPageWithLayout = () => {
         formData.username,
         formData.password
       );
-      router.push("/dashboard");
+      router.push("/");
     } catch (err) {
       setError("نام کاربری یا رمز عبور اشتباه است");
     }
