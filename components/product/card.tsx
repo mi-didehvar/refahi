@@ -11,7 +11,7 @@ export class Product {
   public image: string[];
   public supplier?: string;
   public selectedCount?: number = 0;
-  public deleted?: DateTime = null
+  public deleted?: Date = null
 }
 
 export function ProductCard({
