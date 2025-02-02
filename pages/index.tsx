@@ -1,5 +1,3 @@
-"use client";
-
 import { ReactElement, useEffect, useState } from "react";
 import { NextPageWithLayout } from "./_app";
 import Layout from "../components/Layout";
@@ -26,7 +24,7 @@ const Page: NextPageWithLayout = () => {
         role: pb.authStore.record.role,
       });
     }
-  }, [pb.authStore.record]);
+  }, []);
 
   const logout = async () => {
     await pb.authStore.clear();
