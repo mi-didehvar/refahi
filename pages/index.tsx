@@ -23,7 +23,7 @@ const Page: NextPageWithLayout = () => {
         </Link>
         <button>نظرسنجی (به‌زودی)</button>
         {
-          ["superUser","productOwner"].includes(pb.authStore.record.role) && (
+          ["superUser","productOwner"].includes(pb.authStore.record?.role) && (
             <>
               <Link href="/product/management">
                 <button>مدیریت محصولات</button>

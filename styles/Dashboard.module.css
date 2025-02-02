@@ -2,7 +2,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     gap: 1rem;
     padding: 1rem 0;
     .products {
@@ -10,7 +10,7 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
-        align-items: start;
+        align-items: flex-start;
         justify-content: stretch;
 
     }

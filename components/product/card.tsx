@@ -24,7 +24,7 @@ export function ProductCard({
   product: Product;
   onAdd?: () => void;
   onMinus?: () => void;
-  disableCounter: boolean;
+  disableCounter?: boolean;
   children?: ReactNode
 }) {
   return (

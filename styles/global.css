@@ -62,7 +62,7 @@ label {
 }
 
 .justify-start {
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .justify-between {
@@ -71,7 +71,7 @@ label {
 
 
 .justify-start {
-  align-items: start;
+  align-items: flex-start;
 }
 
 .gap-4 {

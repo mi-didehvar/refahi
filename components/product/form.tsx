@@ -41,7 +41,7 @@ export default function ProductModal({ isOpen, onClose, product }: {isOpen: bool
 
                 imageFormData.append("image", imageFile);
                 imageFormData.append("name", formData.name);
-                imageFormData.append("price", formData.price);
+                imageFormData.append("price", String(formData.price));
                 imageFormData.append("supplier", pb.authStore.record.id)
             }
 
