@@ -11,6 +11,7 @@ export class Product {
   public image: string[];
   public supplier?: string;
   public selectedCount?: number = 0;
+  public inventory?:number = 0
   public deleted?: Date = null
 }
 

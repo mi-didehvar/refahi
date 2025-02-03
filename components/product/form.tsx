@@ -14,11 +14,12 @@ export default function ProductModal({ isOpen, onClose, product }: {isOpen: bool
                 id: product.id || "",
                 name: product.name || "",
                 price: product.price || 0,
+                inventory: product.inventory ||0,
                 image: [],
 
             });
         } else {
-            setFormData({ id: "", name: "", price: 0, image: [] });
+            setFormData({ id: "", name: "", price: 0, image: [], inventory: 0 });
         }
     }, [product]);
 
@@ -42,6 +43,7 @@ export default function ProductModal({ isOpen, onClose, product }: {isOpen: bool
                 imageFormData.append("image", imageFile);
                 imageFormData.append("name", formData.name);
                 imageFormData.append("price", String(formData.price));
+                imageFormData.append("inventory", String(formData.inventory));
                 imageFormData.append("supplier", pb.authStore.record.id)
             }
 
@@ -49,7 +51,8 @@ export default function ProductModal({ isOpen, onClose, product }: {isOpen: bool
             const dataToSave = imageFile ? imageFormData : {
                 name: formData.name,
                 price: formData.price,
-                supplier: pb.authStore.record.id
+                supplier: pb.authStore.record.id,
+                inventory: formData.inventory
             } as Product;
 
             if (formData.id) {
@@ -82,6 +85,10 @@ export default function ProductModal({ isOpen, onClose, product }: {isOpen: bool
                         <label>
                             نام محصول
                             <input type="text" name="name" value={formData?.name} onChange={handleChange} required />
+                        </label>
+                        <label>
+                            نام محصول
+                            <input type="text" name="inventory" value={formData?.inventory} onChange={handleChange} required />
                         </label>
                         <label>
                             قیمت (به ریال)
