@@ -87,7 +87,7 @@ export default function ProductModal({ isOpen, onClose, product }: {isOpen: bool
                             <input type="text" name="name" value={formData?.name} onChange={handleChange} required />
                         </label>
                         <label>
-                            نام محصول
+                            موجودی
                             <input type="text" name="inventory" value={formData?.inventory} onChange={handleChange} required />
                         </label>
                         <label>
