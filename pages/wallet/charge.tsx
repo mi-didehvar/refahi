@@ -12,9 +12,9 @@ const Page: NextPageWithLayout = () => {
   const pay = async () => {
     try {
       const result = await axios.post("https://gateway.zibal.ir/v1/request", {
-        merchant: "65213b7bc3e074001bc7b427",
+        merchant: "67a281746f38030011c09c83",
         amount: amount,
-        callbackUrl: "https://snaks.liara.run/wallet/callback",
+        callbackUrl: "https://supermarket.tickasso.ir/wallet/callback",
         description: `Charge ${pb.authStore.record["username"]}'s Wallet with ${amount} Rial`,
         mobile: pb.authStore.record.mobile,
       });

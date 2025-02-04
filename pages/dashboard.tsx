@@ -27,53 +27,70 @@ const Page: NextPageWithLayout = () => {
   }, []);
 
 
-  const increase = (_index:number) => {
-    setProducts(products.map((product,index)=>{
-      if(index === _index){
-        return {...product, selectedCount: product.selectedCount + 1};
+  const increase = (_index: number) => {
+    setProducts(products.map((product, index) => {
+      if (index === _index) {
+        return { ...product, selectedCount: product.selectedCount + 1 };
       }
       return product;
     }))
   }
-  const decrease = (_index:number) => {
-    setProducts(products.map((product,index)=>{
-      if(index === _index){
-        return {...product, selectedCount: Math.max(0, product.selectedCount - 1)};
+  const decrease = (_index: number) => {
+    setProducts(products.map((product, index) => {
+      if (index === _index) {
+        return { ...product, selectedCount: Math.max(0, product.selectedCount - 1) };
       }
       return product;
     }))
   }
 
-  const pay = () => {
+  const pay = async () => {
     try {
-      const cart = products.filter(x=>x.selectedCount > 0);
+      let hasError = false
+      const cart = products.filter(x => x.selectedCount > 0);
+      const price = cart.reduce((value, current) => value + (current.selectedCount * (current.price || 0)), 0)
+      const newCredit = pb.authStore.record?.credit - price
+      const transaction = pb.createBatch()
       cart.forEach((product) => {
-        pb.collection("orders").create({
+        if (product.selectedCount > product.inventory) {
+          alert(`موجودی ${product.name} در مرکز تنقلات کافی نیست`)
+          hasError = true
+        }
+        transaction.collection("orders").create({
           user: pb.authStore.record?.id,
           product: product.id,
           count: product.selectedCount,
         });
+        transaction.collection("products").update(product.id, {
+          inventory: product.inventory - product.selectedCount,
+          mode: "buy"
+        })
       });
-      pb.collection("users").update(pb.authStore.record?.id, {
-        credit: pb.authStore.record?.credit - cart.reduce((value, current) => value + (current.selectedCount * (current.price || 0)), 0),
+      transaction.collection("users").update(pb.authStore.record?.id, {
+        credit: newCredit,
       });
-      pb.authStore.record.credit -= cart.reduce((value, current) => value + (current.selectedCount * (current.price || 0)), 0)
-      setProducts(products.map(x=>({...x, selectedCount: 0})));
+      if (!hasError) {
+        await transaction.send()
+        pb.authStore.save(pb.authStore.token, {...pb.authStore.record, credit: newCredit})
+        console.log(pb.authStore.record)
+        setProducts(products.map(x => ({ ...x, selectedCount: 0 })));
+        alert("سفارش شما با موفقیت ثبت شد")
+      }
     } catch (ex: any) {
-      
+
     }
   }
 
   return (
     <div className={DashboardStyle.dashboard_container}>
-      {products.find(x=>x.selectedCount > 0) && (
+      {products.find(x => x.selectedCount > 0) && (
         <div className={DashboardStyle.cart}>
           <div>مجموع سبد خرید: <strong>{usePriceFormatter(products.reduce((value, current) => value + (current.selectedCount * (current.price || 0)), 0))}</strong> ریال</div>
           <button onClick={pay}>پرداخت</button>
         </div>
       )}
       <div className={DashboardStyle.products}>
-        {products.map((product,index) => (
+        {products.map((product, index) => (
           <ProductCard
             key={product.id}
             product={product}

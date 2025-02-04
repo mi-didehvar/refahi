@@ -8,5 +8,6 @@ export const usePocket = () => {
   const pb = useMemo(() => {
     return new PocketBase(pocketbaseUrl);
   }, []);
+
   return pb;
 };
